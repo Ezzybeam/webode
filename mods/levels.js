@@ -110,11 +110,29 @@ Webode.registerMod({
   },
 
   async _fetchLevel(id) {
-    if (!WORKER_URL) throw new Error('worker not configured — see worker/index.js');
+    // Tampermonkey: use GM_xmlhttpRequest (real browser IP, bypasses CORS + boomlings block)
+    if (window.GMFetch) return this._fetchViaBoomlings(id, window.GMFetch);
+    // GitHub Pages / extension: route through worker proxy
+    if (!WORKER_URL) throw new Error('not supported here — install via Tampermonkey to load custom levels');
     const res = await fetch(WORKER_URL + '?id=' + encodeURIComponent(id));
     if (!res.ok) throw new Error('level not found');
     const json = await res.json();
     if (!json.data) throw new Error(json.error || 'no level data');
     return json.data;
+  },
+
+  async _fetchViaBoomlings(id, fetchFn) {
+    const res = await fetchFn('https://www.boomlings.com/database/downloadGJLevel22.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'levelID=' + id + '&secret=Wmfd2893gb7',
+    });
+    const text = await res.text();
+    if (!text || text.trim() === '-1') throw new Error('level not found');
+    const parts = text.split(':');
+    for (let i = 0; i < parts.length - 1; i++) {
+      if (parts[i] === '4') return parts[i + 1];
+    }
+    throw new Error('no level data in response');
   }
 });
