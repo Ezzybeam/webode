@@ -1,3 +1,7 @@
+// Set this to your Cloudflare Worker URL after deploying worker/index.js
+// e.g. 'https://gd-proxy.yourname.workers.dev'
+const WORKER_URL = '';
+
 Webode.registerMod({
   id: 'levels',
   name: 'Level Loader',
@@ -106,11 +110,11 @@ Webode.registerMod({
   },
 
   async _fetchLevel(id) {
-    // GDBrowser has CORS enabled and returns raw level data
-    const res = await fetch('https://gdbrowser.com/api/level/' + encodeURIComponent(id));
+    if (!WORKER_URL) throw new Error('worker not configured — see worker/index.js');
+    const res = await fetch(WORKER_URL + '?id=' + encodeURIComponent(id));
     if (!res.ok) throw new Error('level not found');
     const json = await res.json();
-    if (!json.data) throw new Error('no level data in response');
+    if (!json.data) throw new Error(json.error || 'no level data');
     return json.data;
   }
 });
