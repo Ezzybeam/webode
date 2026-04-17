@@ -1,6 +1,6 @@
 // Set this to your Cloudflare Worker URL after deploying worker/index.js
 // e.g. 'https://gd-proxy.yourname.workers.dev'
-const WORKER_URL = '';
+const WORKER_URL = 'https://gdproxy.ezzyezra08.workers.dev';
 
 Webode.registerMod({
   id: 'levels',
