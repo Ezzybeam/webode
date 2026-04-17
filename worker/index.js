@@ -17,7 +17,7 @@ async function handle(request) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'User-Agent': 'Mozilla/5.0',
+      'User-Agent': 'RobTopGames/42 CFNetwork/1410.0.3 Darwin/22.6.0',
     },
     body: 'levelID=' + id + '&secret=Wmfd2893gb7',
   });
@@ -31,7 +31,7 @@ async function handle(request) {
   for (let i = 0; i < parts.length - 1; i++) {
     if (parts[i] === '4') { levelData = parts[i + 1]; break; }
   }
-  if (!levelData) return cors(404, { error: 'no level data' });
+  if (!levelData) return cors(404, { error: 'no level data', raw: text.slice(0, 500) });
 
   return cors(200, { data: levelData });
 }
