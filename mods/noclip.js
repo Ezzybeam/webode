@@ -12,6 +12,7 @@ Webode.registerMod({
   // Patch killPlayer at runtime so noclip works without index-game.js edits
   // (needed for Tampermonkey install where we can't replace index-game.js)
   _sceneReady(scene) {
+    if (!scene['killPlayer']) return;
     if (scene['killPlayer'].__noclipPatched) return;
     const orig = scene['killPlayer'].bind(scene);
     scene['killPlayer'] = function() {
