@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Geometry Dash - Play Level 1</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        body { overflow: hidden; }
+        canvas { display: block; margin: 0 auto; }
+    </style>
+
+  <!-- Webode core — must load before game module -->
+  <script src="./webode.js"></script>
+
+  <!-- Mods -->
+  <script src="./mods/noclip.js"></script>
+  <script src="./mods/reset.js"></script>
+  <script src="./mods/hitboxes.js"></script>
+  <script src="./mods/speedhack.js"></script>
+
+  <script type="module" crossorigin src="./assets/index-game.js"></script>
+  <script>
+    new ResizeObserver(() => {
+      window.dispatchEvent(new Event('resize'));
+    }).observe(document.documentElement);
+  </script>
+</head>
+<body></body>
+</html>
