@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": { "extensionPath": "/assets/index-game.js" }
+    },
+    "condition": {
+      "urlFilter": "||geometrydash.com/game/assets/index-game.js",
+      "resourceTypes": ["script"]
+    }
+  }
+]

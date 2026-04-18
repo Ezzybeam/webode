@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Webode",
+  "version": "1.0.0",
+  "description": "Mod loader for Geometry Dash (web)",
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": ["https://www.geometrydash.com/*"],
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "ruleset_1",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  },
+  "content_scripts": [{
+    "matches": ["https://www.geometrydash.com/game/*"],
+    "js": ["inject.js"],
+    "run_at": "document_start"
+  }]
+}

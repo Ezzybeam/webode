@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+www.geometrydash.com/
+lasokar.github.io/
+geometrydashdotcom-main/
+docs/
+*.png
+*.txt
+index-game original*
