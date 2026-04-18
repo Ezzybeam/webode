@@ -8,6 +8,7 @@ const files = [
   'mods/reset.js',
   'mods/hitboxes.js',
   'mods/speedhack.js',
+  'mods/levels.js',
 ];
 
 for (const f of files) {
